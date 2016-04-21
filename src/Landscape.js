@@ -25,6 +25,7 @@ export default class App extends Component {
     return <div style={{position: 'relative'}}>
       <img src={`http://${id%7}.api.artsmia.org/800/${id}.jpg`}
         onDrag={this.buildPath.bind(this)}
+        onDragStart={this.setBlankDragImage}
       />
       {path && <span ref="dot" style={styles.dot} />}
 
@@ -63,5 +64,13 @@ export default class App extends Component {
 
   clearPath() {
     this.setState({path: []})
+  }
+
+  // don't let the browser ghost the image as we drag the mouse along it
+  setBlankDragImage(dragEvent) {
+    var dragIcon = document.createElement('img');
+    dragIcon.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+    dragIcon.width = 1;
+    dragEvent.dataTransfer.setDragImage(dragIcon, -10, -10);
   }
 }
