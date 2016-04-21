@@ -29,9 +29,10 @@ export default class App extends Component {
       />
       {path && <span ref="dot" style={styles.dot} />}
 
-      <pre>{stringPath}</pre>
-      <button onClick={this.run.bind(this)}>Run</button>
-      <button onClick={this.clearPath.bind(this)}>clear</button>
+      <div>
+        <button onClick={this.run.bind(this)}>Run</button>
+        <button onClick={this.clearPath.bind(this)}>clear</button>
+      </div>
     </div>
   }
 

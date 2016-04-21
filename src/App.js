@@ -2,10 +2,28 @@ import React, { Component } from 'react'
 import Landscape from './Landscape'
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      ids: [100826, 89609],
+    }
+  }
+
   render() {
     return <div>
-      <Landscape id="100826" />
-      <Landscape id="89609" />
+      {this.state.ids.map(id => <div>
+        <Landscape id={id} key={id} />
+        <hr/>
+      </div>)}
+
+      <button onClick={this.addLand.bind(this)}>Add a Landscape</button>
     </div>
+  }
+
+  addLand() {
+    var id = prompt("artwork id?")
+    var {ids} = this.state
+    ids.push(id)
+    this.setState({ids})
   }
 }
